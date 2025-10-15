@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Articles Blog</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🩺 Health Articles Blog</h1>
+    <a class="add-btn" href="/add">➕ Add Article</a>
+  </header>
+
+  <main class="container">
+    {% for article in articles %}
+    <div class="card">
+      <h2>{{ article.title }}</h2>
+      <p>{{ article.content }}</p>
+      
+      <form action="{{ url_for('delete_article', article_id=article.id) }}" method="POST">
+        <button class="delete-btn" type="submit">🗑 Delete</button>
+      </form>
+    </div>
+    {% endfor %}
+  </main>
+
+  <footer>
+    <p>Made with ❤️ using Flask</p>
+  </footer>
+</body>
+</html>
